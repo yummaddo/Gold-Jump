@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590ca0ef84dd46199ab11e940b1f1f1f, type: 3}
+  m_Name: BootScene
+  m_EditorClassIdentifier: 
+  scene:
+    m_SceneAsset: {fileID: 102900000, guid: 141fae96264bd2843b2cd247325e532c, type: 3}
+    m_IsDirty: 0
+    m_ScenePath: Assets/Scenes/Boot.unity
+  sceneName: boot
+  type: 2

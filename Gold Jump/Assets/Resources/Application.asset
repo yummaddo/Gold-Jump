@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7c873c33334bc0be734ee17e70bebd, type: 3}
+  m_Name: Application
+  m_EditorClassIdentifier: 
+  currentCoins: 0
+  scenesList:
+  - {fileID: 11400000, guid: 4c149c765dda5464083955ade10d51eb, type: 2}
+  - {fileID: 11400000, guid: bbd95c70f87cad5439a9a43f4f367371, type: 2}
+  - {fileID: 11400000, guid: 88d72f7180f1b214b926038905e055f4, type: 2}
+  - {fileID: 11400000, guid: 50673da579a729e4e8a5648e4251c9e0, type: 2}
+  mainMenu:
+    m_SceneAsset: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
+    m_IsDirty: 0
+    m_ScenePath: Assets/Scenes/Menu.unity
+  currentSceneLevel: {fileID: 11400000, guid: 4c149c765dda5464083955ade10d51eb, type: 2}
+  bootScene: {fileID: 11400000, guid: 66c5deb2eb53025488872d241b5612df, type: 2}
