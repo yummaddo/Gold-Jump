@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,12 @@ namespace Game.Boot
     {
         // context 
         private Application _applicationContext;
-        [SerializeField] private Scrollbar Bar;
+        [SerializeField] private Slider Bar;
         [SerializeField] private GameObject BootContext;
+        [SerializeField] private TextMeshProUGUI Text;
         private void Awake()
         {
             _applicationContext = Application.Instance;
-            Destroy(BootContext);
-            DontDestroyOnLoad(gameObject);
             _applicationContext.OnLoadingScene = ApplicationContextOnLoadingScene;
             _applicationContext.OnSceneLoad = ApplicationContextOnLoadScene;
         }
@@ -29,6 +29,7 @@ namespace Game.Boot
             try
             {
                 Bar.value = Mathf.Clamp01(progress);
+                Text.text = ((int)(progress * 100)).ToString()+"%";
 #if UNITY_EDITOR
                 ClearDeveloperConsole();
 #endif

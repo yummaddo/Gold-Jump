@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5845506792832115883}
   - component: {fileID: 3739863188687447331}
   - component: {fileID: -7741314183653969896}
+  - component: {fileID: 3021382165910711237}
+  - component: {fileID: -309050654076039814}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -46,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: -309050654076039814}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -73,10 +76,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ac1b69d7aa1b64bb38c683148335f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <StaticLoadTime>k__BackingField: 2
+  <StaticLoadTime>k__BackingField: 1
   <LoadNexLevel>k__BackingField: 1
   <GoadAlivePlayer>k__BackingField: 0
   <LoadNexLevelTime>k__BackingField: 1
   <ReloadSceneTime>k__BackingField: 1
   <LevelsSetting>k__BackingField: {fileID: 11400000, guid: 08be7fdf194060a498b8ef2cef5c4561,
     type: 2}
+--- !u!114 &3021382165910711237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137248759775508385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbcf1b8ccf9458ba284eb7d16c0452c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-309050654076039814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137248759775508385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02392491f1d40978735200fc8899bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

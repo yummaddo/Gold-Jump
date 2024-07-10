@@ -65,20 +65,58 @@ namespace Game
 
         private async void Start()
         {
+            if (!LevelsSetting.isWelcome)
+            {
+                _session = FindObjectOfType<Session>();
+                if (_session == null)
+                    await LoadLevel(LevelsSetting.mainMenu);
+                else
+                    await LoadLevelInCurrentContext();
+            }
+            else
+            {
+                LevelsSetting.isWelcome = false;
+                SceneManager.LoadScene(LevelsSetting.welcomeScene.SceneName);
+            }
+        }
+
+        public async void StartFromMenu()
+        {
             await LoadLevel(LevelsSetting.mainMenu);
         }
+
+        private async UniTask LoadLevelInCurrentContext()
+        {
+            _instance = this;
+            OnSceneLoad?.Invoke();
+            if (LevelsSetting.currentSceneLevel != null)
+                await _session.OnAwake(LevelsSetting.currentSceneLevel);
+            _session.OnStart();
+            await UniTask.CompletedTask;
+        }
+
         private async UniTask LoadLevel(SceneReference scene)
         {
             _instance = this;
             _session = FindObjectOfType<Session>();
+            // await to render has been done after get asyncScene with 0.9f progression resource 
+            if (_session == null)
+            {
+                var asyncMenu = await UtilityBoot.LoadSceneAsync(scene, this.GetCancellationTokenOnDestroy(), this);
+                await UniTask.WaitUntil(() => asyncMenu.isDone);
+                OnSceneLoad?.Invoke();
+                await UniTask.WaitForSeconds(0.1f, false, PlayerLoopTiming.Update, this.destroyCancellationToken);
+                return;
+            }
             var asyncScene = await UtilityBoot.LoadSceneAsync(scene, this.GetCancellationTokenOnDestroy(), this);
-            // TODO await to render has been done after get asyncScene with 0.9f progression resource 
             await UniTask.WaitUntil(() => asyncScene.isDone);
             OnSceneLoad?.Invoke();
             await UniTask.WaitForSeconds(0.2f, false, PlayerLoopTiming.Update, this.destroyCancellationToken);
-            await _session.OnAwake(LevelsSetting.currentSceneLevel);
+            if (LevelsSetting.currentSceneLevel != null)
+                await _session.OnAwake(LevelsSetting.currentSceneLevel);
             _session.OnStart();
         }
+        
         private void LoadNextLevel()
         {
             if (Session.Instance.Activity != ActivityType.Restart)

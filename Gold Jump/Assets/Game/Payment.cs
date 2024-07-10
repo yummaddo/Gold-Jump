@@ -8,7 +8,7 @@ namespace Game
     public class Payment: MonoBehaviour
     {
         private static readonly string _coinPrefsKeyStorage = "CoinKeyStoreCount";
-        [SerializeField] private Application application;
+        private Application _application;
         public Action OnPaymentFailed;
         public Action OnCoinPaymentConfirm;
         public Action<AbstractBoost>  OnBoostPaymentConfirm;
@@ -29,6 +29,7 @@ namespace Game
         private void Awake()
         {
             _instance = this;
+            _application = gameObject.GetComponent<Application>();
         }
         internal void TryToPayBoost(int value, AbstractBoost boost)
         {

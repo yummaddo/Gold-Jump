@@ -10,9 +10,11 @@ namespace Game.Core
     public class ApplicationSetting : ScriptableObject
     {
         public int CurrentCoinsCount => currentCoins;
+        public bool isWelcome = false;
         [SerializeField] private int currentCoins = 0;
         [FormerlySerializedAs("scenesList")]         public List<LevelScene>  scenesList = new List<LevelScene>();
         [FormerlySerializedAs("mainMenu")]           public SceneReference    mainMenu;
+        [FormerlySerializedAs("welcomeScene")]       public SceneReference    welcomeScene;
         [FormerlySerializedAs("currentSceneLevel")]  public LevelScene        currentSceneLevel;
         [FormerlySerializedAs("bootScene")]          public BootScene         bootScene;
         

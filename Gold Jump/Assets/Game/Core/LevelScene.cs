@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.GamePlay;
 using UnityEngine;
 using UnitySceneReference;
 
@@ -12,5 +13,6 @@ namespace Game.Core
         [Space(10)]
         [Header("Scene Parameters ")]
         public SceneType type = SceneType.Level;
+        public Level data;
     }
 }

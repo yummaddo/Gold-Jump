@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using Game.Core;
 using Game.Core.Types;
 using UnityEngine;
+using UnitySceneReference;
 using Zenject;
 
 namespace Game
@@ -88,9 +89,18 @@ namespace Game
             OnSceneAwakeEndedSession?.Invoke(); // awake end
             await UniTask.WaitForFixedUpdate();
         }
+        internal async UniTask OnAwake() // scene context generation and initialization
+        {
+            Activity = ActivityType.Boot;
+            OnSceneBootSession?.Invoke(); // boot end
+            await UniTask.WaitForSeconds(BootTime, false, PlayerLoopTiming.Update, destroyCancellationToken);
+            OnSceneAwakeEndedSession?.Invoke(); // awake end
+            await UniTask.WaitForFixedUpdate();
+        }
         internal void OnStart()
         {
             OnSceneStartSession?.Invoke();
+            Activity = ActivityType.Playing;
         }
         private void OnDisable()
         {

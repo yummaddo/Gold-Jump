@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PanelCrack
+  - PanelStatic
+  - PanelDisappearing
+  - PanelMove
+  - PanelDoubleJump
+  - Missile
+  - DeadZone
   layers:
   - Default
   - TransparentFX

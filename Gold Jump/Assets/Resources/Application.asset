@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7c873c33334bc0be734ee17e70bebd, type: 3}
   m_Name: Application
   m_EditorClassIdentifier: 
+  isWelcome: 0
   currentCoins: 0
   scenesList:
   - {fileID: 11400000, guid: 4c149c765dda5464083955ade10d51eb, type: 2}
@@ -21,6 +22,10 @@ MonoBehaviour:
   mainMenu:
     m_SceneAsset: {fileID: 102900000, guid: c850ee8c3b14cc8459e7e186857cf567, type: 3}
     m_IsDirty: 0
-    m_ScenePath: Assets/Scenes/Menu.unity
+    m_ScenePath: Assets/Resources/Scenes/Menu.unity
+  welcomeScene:
+    m_SceneAsset: {fileID: 102900000, guid: 5717fa497f565d84ea8fa989e42cb25e, type: 3}
+    m_IsDirty: 0
+    m_ScenePath: Assets/Resources/Scenes/Welcome.unity
   currentSceneLevel: {fileID: 11400000, guid: 4c149c765dda5464083955ade10d51eb, type: 2}
   bootScene: {fileID: 11400000, guid: 66c5deb2eb53025488872d241b5612df, type: 2}
