@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ac1b69d7aa1b64bb38c683148335f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <StaticLoadTime>k__BackingField: 1
+  <StaticLoadTime>k__BackingField: 1.3
   <LoadNexLevel>k__BackingField: 1
   <GoadAlivePlayer>k__BackingField: 0
   <LoadNexLevelTime>k__BackingField: 1

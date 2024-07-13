@@ -8,7 +8,7 @@ namespace Game.Boot
     {
         public override void InstallBindings()
         {
-            Container.Bind<Application>().FromComponentOn(gameObject).AsSingle();
+            Container.Bind<ApplicationContext>().FromComponentOn(gameObject).AsSingle();
             Container.Bind<Payment>().FromComponentOn(gameObject).AsSingle();
         }
     }

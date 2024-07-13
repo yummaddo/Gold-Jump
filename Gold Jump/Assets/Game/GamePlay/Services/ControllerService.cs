@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Game.Core;
+using Game.Core.Abstraction;
 using UnityEngine;
 
 namespace Game.GamePlay.Services
@@ -17,8 +18,19 @@ namespace Game.GamePlay.Services
 
         private void Update()
         {
+    
             
-#if UNITY_IOS || UNITY_ANDROID
+            
+#if UNITY_EDITOR
+            if (!Active()) return;
+            if (Input.GetKeyDown("a"))
+                _horizontalSpeed = -1f;
+            if (Input.GetKeyDown("d"))
+                _horizontalSpeed = 1f;
+            if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
+                _horizontalSpeed = 0f;
+
+#elif UNITY_IOS || UNITY_ANDROID
             _horizontalSpeed = Input.acceleration.x;
 #else
             if (!Active()) return;

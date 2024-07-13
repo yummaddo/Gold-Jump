@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Game.GamePlay.Panels.Abstraction;
+using UnityEngine;
 
-namespace Game.GamePlay
+namespace Game.GamePlay.Panels
 {
     public class DoubleJumpPanel : AbstractPanel
     {
@@ -11,7 +12,8 @@ namespace Game.GamePlay
         }
         public override void GetForce(Rigidbody2D player)
         {
-            player.velocity = Vector2.up * GetForceSpeed();
+            if ( player.velocity.y < GetForceSpeed()/1.3f) player.velocity = Vector2.up * GetForceSpeed();
+
         }
         public override void ContactWithPlayer(Player player)
         {

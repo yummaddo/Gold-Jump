@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Core.Types;
+using UnityEngine;
 
 namespace Game.Core
 {

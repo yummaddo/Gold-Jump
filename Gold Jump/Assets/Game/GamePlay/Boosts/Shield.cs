@@ -7,6 +7,12 @@ namespace Game.GamePlay.Boosts
     {
         public override void Activate()
         {
+            var value = Payment.Instance.GetAmountOfBoost(this);
+            if (value > 0)
+            {
+                if (Session.Instance.playerControl.TryToActiveShieldWithCallbackResult())
+                    Payment.Instance.TryUseBoost(this);
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using Game.Core.Types;
 using UnityEngine;
 
-namespace Game.Core
+namespace Game.Core.Abstraction
 {
 public abstract class AbstractServiceBoot : MonoBehaviour, IServiceBoot
     {

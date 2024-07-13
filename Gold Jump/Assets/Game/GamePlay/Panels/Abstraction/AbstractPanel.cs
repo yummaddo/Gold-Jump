@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.GamePlay
+namespace Game.GamePlay.Panels.Abstraction
 {
     public enum PanelType
     {

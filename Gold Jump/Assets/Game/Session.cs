@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Core;
 using Game.Core.Types;
+using Game.GamePlay;
 using UnityEngine;
-using UnitySceneReference;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Game
@@ -17,12 +16,14 @@ namespace Game
 
     public class Session : MonoBehaviour
     {
-        [Inject] private Application _application;
+        [Inject] private ApplicationContext _application;
         [Inject] private DiContainer _container;
+        [Inject] internal Player playerControl;
+        
         [field: SerializeField] private float BootTime { get; set; } = 0.2f;
         [field: SerializeField] internal int SessionCoins { get; set; } = 0;
-        
         [field: SerializeField] internal ActivityType Activity { get; set; } = ActivityType.Boot;
+        
         internal Action OnSceneBootSession;
         internal Action OnSceneGenerationSession;
         internal Action OnSceneAwakeEndedSession;
@@ -31,16 +32,45 @@ namespace Game
         
         internal Action OnScenePlayerDead; // when dead in Level
         internal Action OnScenePlayerTutorialDead; // dead in tutorial state
+        internal Action OnScenePlayerShieldAttack; // when dead in Level
 
+        
         internal Action OnStopSession;
         internal Action OnReStartSession;
         
         private Action _onScenePlayerLoadNextLevelAfterWon;
         internal Action OnScenePlayerWon;
+        internal Action OnScenePlayerReLife;
 
         internal bool Active => _status == SessionState.Active;
         private SessionState _status = SessionState.Active;
+        public Image backGround;
         
+        private void Awake()
+        {
+            OnScenePlayerDead += ScenePlayerDead;
+            OnScenePlayerWon += ScenePlayerWon;
+            _onScenePlayerLoadNextLevelAfterWon += _application.OnGameWin;
+            _instance = this;
+        }
+
+        private void ScenePlayerDead()
+        {
+            _status = SessionState.Dead;
+            OnStopSession?.Invoke();
+        }
+        
+        internal void ScenePlayerReLife()
+        {
+            _status = SessionState.Active;
+            OnReStartSession?.Invoke();
+            OnScenePlayerReLife?.Invoke();
+        }
+        private void ScenePlayerWon()
+        {
+            _status = SessionState.Win;
+            OnStopSession?.Invoke();
+        }
         public void SessionStop()
         {
             _status = SessionState.DeActive;
@@ -59,12 +89,8 @@ namespace Game
                 _onScenePlayerLoadNextLevelAfterWon?.Invoke();
             }
         }
-        [field: SerializeField] private LevelScene setting { get; set; }
-        private void Awake()
-        {
-            _onScenePlayerLoadNextLevelAfterWon += _application.OnGameWin;
-            _instance = this;
-        }
+        [field: SerializeField] private LevelScene Setting { get; set; }
+
         private static Session _instance;
         public static Session Instance
         {
@@ -82,7 +108,7 @@ namespace Game
 
         internal async UniTask OnAwake(LevelScene scene) // scene context generation and initialization
         {
-            setting = scene;
+            Setting = scene;
             Activity = ActivityType.Boot;
             OnSceneBootSession?.Invoke(); // boot end
             await UniTask.WaitForSeconds(BootTime, false, PlayerLoopTiming.Update, destroyCancellationToken);
@@ -99,6 +125,7 @@ namespace Game
         }
         internal void OnStart()
         {
+            backGround.sprite = Setting.backGround;
             OnSceneStartSession?.Invoke();
             Activity = ActivityType.Playing;
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.Core
+namespace Game.Core.Abstraction
 {
     public interface IApplication
     {

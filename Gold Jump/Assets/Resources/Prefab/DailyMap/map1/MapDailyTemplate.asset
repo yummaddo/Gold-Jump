@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4cbd2b77a5441498e6fe00bf2e1e3a, type: 3}
+  m_Name: MapDailyTemplate
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 21300000, guid: b8702aa0cf2004440bc4eccbb42660a2, type: 3}
+  nameOfMap: SimpleMap
+  template:
+    keyData: 010000000200000003000000040000000500000006000000070000000800000009000000
+    valueData:
+    - {fileID: 1887406999903483552, guid: 3e00dc5ce7d3f5940bf86e207756f6b4, type: 3}
+    - {fileID: 7086201892885735246, guid: d36c46172ea41fe4b923364caa8329a6, type: 3}
+    - {fileID: 9046641571229663136, guid: ebc1d29bf5ef46c49a79db5d52337f87, type: 3}
+    - {fileID: 786362415882937514, guid: 5c70e31df79223b43bcb8c4de57405cc, type: 3}
+    - {fileID: 4819760676299939969, guid: f0acebe239964a747a5a8acad7376a5b, type: 3}
+    - {fileID: 462042049816881471, guid: 2dc5af7aba4de014ab8be5d15ffd6f2d, type: 3}
+    - {fileID: 6330365300447413531, guid: 8319818dd32bdeb46a39ba32c8bb2e44, type: 3}
+    - {fileID: 3154910166767772537, guid: 78a7fee178ff5a640aa33311571d16c1, type: 3}
+    - {fileID: 8456654167543430685, guid: acee5cbb8622d5c40a2d6165ecfb0225, type: 3}

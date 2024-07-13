@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Game.Boot;
 using Game.Core;
+using Game.Core.Abstraction;
 using Game.Core.Types;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,7 @@ using Zenject;
 
 namespace Game
 {
-    public class Application : MonoBehaviour, IApplication, ILevels, ISetting
+    public class ApplicationContext : MonoBehaviour, IApplication, ILevels, ISetting
     {
         public Action<float> OnLoadingScene { get; set; }
         public Action OnSceneLoad { get; set; }
@@ -38,14 +39,14 @@ namespace Game
         
         [field: Header("Levels set")]
         [field: SerializeField] public ApplicationSetting LevelsSetting { get; set; }
-        private static Application _instance;
-        internal static Application Instance
+        private static ApplicationContext _instance;
+        internal static ApplicationContext Instance
         {
             get
             {
                 if (!_instance)
                 {
-                    _instance = new GameObject().AddComponent<Application>();
+                    _instance = new GameObject().AddComponent<ApplicationContext>();
                     _instance.name = _instance.GetType().ToString();
                     DontDestroyOnLoad(_instance.gameObject);
                 }
@@ -61,10 +62,18 @@ namespace Game
         {
             if (LoadNexLevel) AwaiterToJump().Forget();
         }
+        public void LoadConcrete(LevelScene scene)
+        {
+            if (LoadNexLevel) AwaiterToJump(scene).Forget();
+        }
         public void ReloadLevel() => AwaiterToReload().Forget();
-
         private async void Start()
         {
+            if (FindObjectOfType<MenuSession>())
+            {
+                LevelsSetting.isWelcome = false;
+                return;
+            }
             if (!LevelsSetting.isWelcome)
             {
                 _session = FindObjectOfType<Session>();
@@ -84,7 +93,10 @@ namespace Game
         {
             await LoadLevel(LevelsSetting.mainMenu);
         }
-
+        public void ImmediatelyMenu()
+        {
+            SceneManager.LoadScene(LevelsSetting.mainMenu.SceneName);
+        }
         private async UniTask LoadLevelInCurrentContext()
         {
             _instance = this;
@@ -95,7 +107,7 @@ namespace Game
             await UniTask.CompletedTask;
         }
 
-        private async UniTask LoadLevel(SceneReference scene)
+        public async UniTask LoadLevel(SceneReference scene)
         {
             _instance = this;
             _session = FindObjectOfType<Session>();
@@ -110,24 +122,42 @@ namespace Game
             }
             var asyncScene = await UtilityBoot.LoadSceneAsync(scene, this.GetCancellationTokenOnDestroy(), this);
             await UniTask.WaitUntil(() => asyncScene.isDone);
-            OnSceneLoad?.Invoke();
+            OnSceneLoad?.Invoke()
+                ;
             await UniTask.WaitForSeconds(0.2f, false, PlayerLoopTiming.Update, this.destroyCancellationToken);
             if (LevelsSetting.currentSceneLevel != null)
                 await _session.OnAwake(LevelsSetting.currentSceneLevel);
             _session.OnStart();
         }
-        
+
+        internal async UniTask InitializeNewSession()
+        {
+            _session = FindObjectOfType<Session>();
+            await _session.OnAwake(LevelsSetting.currentSceneLevel);
+            _session.OnStart();
+        }
+
         private void LoadNextLevel()
         {
-            if (Session.Instance.Activity != ActivityType.Restart)
-            {
-                var id = LevelsSetting.currentSceneLevel.id;
+            // if (Session.Instance.Activity != ActivityType.Restart)
+            // {
                 LevelsSetting.LoadNext();
-                Session.Instance.Activity = ActivityType.Restart;
+                // Session.Instance.Activity = ActivityType.Restart;
                 SceneManager.LoadScene(LevelsSetting.bootScene.scene.SceneName, LoadSceneMode.Single);
-                LoadLevel(LevelsSetting.currentSceneLevel.sceneReference).Forget();
-            } 
+                // LoadLevel(LevelsSetting.currentSceneLevel.sceneReference).Forget();
+            // } 
         }
+        private void LoadNextConcrete(LevelScene scene)
+        {
+            // if (Session.Instance.Activity != ActivityType.Restart)
+            // {
+                LevelsSetting.LoadConcrete(scene);
+                // Session.Instance.Activity = ActivityType.Restart;
+                SceneManager.LoadScene(LevelsSetting.bootScene.scene.SceneName, LoadSceneMode.Single);
+                // LoadLevel(LevelsSetting.currentSceneLevel.sceneReference).Forget();
+            // } 
+        }
+
         private void ReLoadLevel()
         {
             if (Session.Instance.Activity != ActivityType.Restart)
@@ -147,6 +177,14 @@ namespace Game
             await UniTask.WaitForSeconds(LoadNexLevelTime, false, PlayerLoopTiming.Update, destroyCancellationToken);
             OnLevelLoadAwaitEnd?.Invoke();
             LoadNextLevel();
+        }
+        private async UniTask AwaiterToJump(LevelScene scene)
+        {
+            OnLevelLoadAwaitStart?.Invoke();
+            // await UniTask.WaitForSeconds(LoadFadeTime, false, PlayerLoopTiming.Update, destroyCancellationToken);
+            await UniTask.WaitForSeconds(LoadNexLevelTime, false, PlayerLoopTiming.Update, destroyCancellationToken);
+            OnLevelLoadAwaitEnd?.Invoke();
+            LoadNextConcrete(scene);
         }
         /// <summary>
         /// TODO : Reload current level

@@ -1,24 +1,38 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnitySceneReference;
 
 namespace Game.Boot
 {
  public class Boot : MonoBehaviour
     {
         // context 
-        private Application _applicationContext;
+        private ApplicationContext _applicationContext;
         [SerializeField] private Slider Bar;
         [SerializeField] private GameObject BootContext;
         [SerializeField] private TextMeshProUGUI Text;
         private void Awake()
         {
-            _applicationContext = Application.Instance;
+            _applicationContext = ApplicationContext.Instance;
             _applicationContext.OnLoadingScene = ApplicationContextOnLoadingScene;
             _applicationContext.OnSceneLoad = ApplicationContextOnLoadScene;
         }
 
+        private void Start()
+        {
+            LoadLevel(_applicationContext.LevelsSetting.currentSceneLevel.sceneReference).Forget();
+        }
+        private async UniTask LoadLevel(SceneReference scene)
+        {
+            var asyncMenu = await UtilityBoot.LoadSceneAsync(scene, this.GetCancellationTokenOnDestroy(), _applicationContext);
+            await UniTask.WaitUntil(() => asyncMenu.isDone);
+            _applicationContext.OnSceneLoad?.Invoke();
+            await UniTask.WaitForSeconds(0.1f, false, PlayerLoopTiming.Update, _applicationContext.destroyCancellationToken);
+            _applicationContext.InitializeNewSession().Forget();
+        }
         private void ApplicationContextOnLoadScene()
         {
             Destroy(gameObject);

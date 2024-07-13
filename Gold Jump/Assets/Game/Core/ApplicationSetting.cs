@@ -18,7 +18,11 @@ namespace Game.Core
         [FormerlySerializedAs("currentSceneLevel")]  public LevelScene        currentSceneLevel;
         [FormerlySerializedAs("bootScene")]          public BootScene         bootScene;
         
-        internal void LoadNext() => TryTyResetToNext(); 
+        internal void LoadNext() => TryTyResetToNext();
+        internal void LoadConcrete(LevelScene scene)
+        {
+            if (scenesList.Contains(scene)) currentSceneLevel = scene;
+        } 
 
         
         #region Context Methods

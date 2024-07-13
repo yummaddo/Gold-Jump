@@ -1,4 +1,4 @@
-﻿namespace Game.Core
+﻿namespace Game.Core.Types
 {
     public enum SceneType
     {

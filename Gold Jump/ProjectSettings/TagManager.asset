@@ -11,6 +11,8 @@ TagManager:
   - PanelDoubleJump
   - Missile
   - DeadZone
+  - Enemy
+  - DeadZoneEnemy
   layers:
   - Default
   - TransparentFX

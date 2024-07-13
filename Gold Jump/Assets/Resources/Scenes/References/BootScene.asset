@@ -15,6 +15,6 @@ MonoBehaviour:
   scene:
     m_SceneAsset: {fileID: 102900000, guid: 141fae96264bd2843b2cd247325e532c, type: 3}
     m_IsDirty: 0
-    m_ScenePath: Assets/Scenes/Boot.unity
+    m_ScenePath: Assets/Resources/Scenes/Boot.unity
   sceneName: boot
   type: 2

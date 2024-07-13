@@ -14,7 +14,7 @@ namespace Game
         {
             await UniTask.WaitForSeconds(awaitTime, false, PlayerLoopTiming.Update,
                 gameObject.GetCancellationTokenOnDestroy());
-            Application.Instance.StartFromMenu();
+            ApplicationContext.Instance.StartFromMenu();
             Destroy(gameObject);
         }
     }

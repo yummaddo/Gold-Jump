@@ -17,11 +17,18 @@ MonoBehaviour:
     m_IsDirty: 0
     m_ScenePath: Assets/Resources/Scenes/Level.unity
   id: 0
+  backGround: {fileID: 21300000, guid: 08e61e60198d6f446976cba96c699f36, type: 3}
+  timeToStar: 100
+  maxEnemy: 3
+  enemyPrefab: {fileID: 7148275746305159196, guid: a37f13c10707f6947a1017e4423ace15,
+    type: 3}
+  percentSpawnEnemyByIteration: 0.04
+  createHeightMinimal: 435
   type: 0
   data:
     height: 1000
-    preGenerateSize: 500
-    panelsIteratorSize: 9
+    preGenerateSize: 100
+    panelsIteratorSize: 5
     iterationBaseSize: 1
     chanceOfWidth:
       serializedVersion: 2
@@ -150,8 +157,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.045365807
       - serializedVersion: 3
-        time: 0.70481366
-        value: 0.06797153
+        time: 0.66141766
+        value: -0.0791232
         inSlope: 1.58473
         outSlope: 1.58473
         tangentMode: 0
@@ -161,8 +168,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 3.1574242
-        outSlope: 3.1574242
+        inSlope: 3.1871812
+        outSlope: 3.1871812
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -250,18 +257,18 @@ MonoBehaviour:
       m_RotationOrder: 4
     dispersionOfBasePlatformType:
       serializedVersion: 2
-      key0: {r: 0.23, g: 0.23, b: 0.23, a: 1}
-      key1: {r: 0.63, g: 0, b: 0.86, a: 1}
+      key0: {r: 0.86, g: 0.4, b: 0, a: 1}
+      key1: {r: 0.23, g: 0.23, b: 0.23, a: 1}
       key2: {r: 0.86, g: 0.4, b: 0, a: 1}
       key3: {r: 1, g: 0, b: 0, a: 1}
       key4: {r: 0, g: 0, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 1, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 2030
-      ctime1: 7415
-      ctime2: 18683
-      ctime3: 50746
+      ctime0: 13629
+      ctime1: 17523
+      ctime2: 24400
+      ctime3: 61931
       ctime4: 65535
       ctime5: 65535
       ctime6: 0
@@ -291,3 +298,6 @@ MonoBehaviour:
       - {fileID: 4921743572495412402, guid: 45ab61be17f01a04dab8277c7511933c, type: 3}
       - {fileID: 5284219581748416487, guid: 7f4b86dc291bf3e4f9bb7afaa2469219, type: 3}
       - {fileID: 8813469882851659527, guid: 78acfe1674d7db74b86c7eaca9c64b94, type: 3}
+  firstStarCoinsRange: {x: 10, y: 20}
+  secondStarCoinsRange: {x: 10, y: 40}
+  thirdStarCoinsRange: {x: 10, y: 80}

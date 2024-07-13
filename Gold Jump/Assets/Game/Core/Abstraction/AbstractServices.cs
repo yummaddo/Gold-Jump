@@ -4,7 +4,7 @@ using Game.Core.Types;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Core
+namespace Game.Core.Abstraction
 {
 public enum ServiceStatus
     {
