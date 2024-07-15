@@ -32,9 +32,16 @@ namespace Game.GamePlay
 
         private void ReLifePlayer()
         {
-            bodyGravity.simulated = true;
-            transform.position += Vector3.up * upValueOnReLife;
-            ForceUp(forceValueOnReLife);
+            try
+            {
+                bodyGravity.simulated = true;
+                transform.position += Vector3.up * upValueOnReLife;
+                ForceUp(forceValueOnReLife);
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
         }
 
         public override void OnStart()

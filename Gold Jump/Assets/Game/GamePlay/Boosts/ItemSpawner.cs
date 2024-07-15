@@ -22,7 +22,13 @@ namespace Game.GamePlay.Boosts
             var chanceOfPlatformType = dispersionOfBase.Evaluate(valueOfPlatform);
             var itemType = listDictionary[chanceOfPlatformType];
             if (itemType != null)
-                _containerDi.InstantiatePrefab(itemType,positionOfItem.transform.parent.parent.parent);
+            {
+                
+                var item = _containerDi.InstantiatePrefab(itemType,transform);
+                // item.transform.parent = positionOfItem.transform.parent.parent.parent;
+            }
+            
+            
         }
     }
 }

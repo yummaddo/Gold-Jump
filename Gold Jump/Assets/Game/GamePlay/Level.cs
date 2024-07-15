@@ -12,9 +12,8 @@ namespace Game.GamePlay
     {
         public int height = 10000;
         public int preGenerateSize = 4000;
-        
-        public int panelsIteratorSize = 2;
-        public int iterationBaseSize = 10;
+        public float panelsIteratorSize = 2;
+        public float iterationBaseSize = 10;
         
         public AnimationCurve chanceOfWidth = AnimationCurve.Linear(0,0,1,1);
         public AnimationCurve spawnPlatformChance;

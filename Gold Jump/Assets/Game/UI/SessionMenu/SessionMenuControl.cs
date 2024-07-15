@@ -43,48 +43,69 @@ namespace Game.UI.SessionMenu
 
         private void OnScenePlayerWon()
         {
-            wonPanelWithStars.SetActive(true);
-            starFirst.Activate();
-            var intValue = 1;
-            var level = _serviceMap.levelScene;
-            var currentProgress = PlayerPrefs.GetInt(level.levelPefsName);
-            var coins = Random.Range(level.firstStarCoinsRange.x, level.firstStarCoinsRange.y);
-            if (_timerService.totalTime < level.timeToStar)
+            try
             {
-                intValue++;
-                coins += Random.Range(level.secondStarCoinsRange.x, level.secondStarCoinsRange.y);
-                starSecond.Activate();
-            }
-            else starSecond.DeActivate();
+                wonPanelWithStars.SetActive(true);
+                starFirst.Activate();
+                var intValue = 1;
+                var level = _serviceMap.levelScene;
+                var currentProgress = PlayerPrefs.GetInt(level.levelPefsName);
+                var coins = Random.Range(level.firstStarCoinsRange.x, level.firstStarCoinsRange.y);
+                if (_timerService.totalTime < level.timeToStar)
+                {
+                    intValue++;
+                    coins += Random.Range(level.secondStarCoinsRange.x, level.secondStarCoinsRange.y);
+                    starSecond.Activate();
+                }
+                else starSecond.DeActivate();
 
-            if (_serviceMap.KilledAll())
-            {
-                intValue++;
-                coins += Random.Range(level.thirdStarCoinsRange.x, level.thirdStarCoinsRange.y);
-                starThird.Activate();
+                if (_serviceMap.KilledAll())
+                {
+                    intValue++;
+                    coins += Random.Range(level.thirdStarCoinsRange.x, level.thirdStarCoinsRange.y);
+                    starThird.Activate();
+                }
+                else
+                {
+                    starThird.DeActivate();
+                }
+                if (currentProgress< intValue)  PlayerPrefs.SetInt(level.levelPefsName, intValue);
+                coinTextMeshProUGUI.text = coins.ToString();
+                _payment.AddCoin(coins);
             }
-            else
+            catch (Exception e)
             {
-                starThird.DeActivate();
+                // ignored
             }
-            if (currentProgress< intValue)  PlayerPrefs.SetInt(level.levelPefsName, intValue);
-            coinTextMeshProUGUI.text = coins.ToString();
-            _payment.AddCoin(coins);
         }
         private void OnScenePlayerDead()
         {
-            var intValue = 0;
-            var level = _serviceMap.levelScene;
-            var currentProgress = PlayerPrefs.GetInt(level.levelPefsName);
-            deadPanelWithTimer.SetActive(true);
-            if (currentProgress< intValue)  PlayerPrefs.SetInt(level.levelPefsName, intValue);
+            try
+            {
+                var intValue = 0;
+                var level = _serviceMap.levelScene;
+                var currentProgress = PlayerPrefs.GetInt(level.levelPefsName);
+                deadPanelWithTimer.SetActive(true);
+                if (currentProgress< intValue)  PlayerPrefs.SetInt(level.levelPefsName, intValue);
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
         }
         private void OnReStartSession() { }
         private void OnStopSession() { }
         public void ReLife()
         {
-            _session.ScenePlayerReLife();
-            deadPanelWithTimer.SetActive(false);
+            try
+            {
+                _session.ScenePlayerReLife();
+                deadPanelWithTimer.SetActive(false);
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
         }
     }
 }

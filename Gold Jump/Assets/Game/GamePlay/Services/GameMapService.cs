@@ -16,7 +16,7 @@ namespace Game.GamePlay.Services
         public int lastHeightPanel = 0;
         public Transform rootOfCamera;
         public LevelScene levelScene;
-        private int _currentIterator = 0;
+        private float _currentIterator = 0;
         private float _delta = 0;
         private int _countOfEnemy = 0;
         private int _countOfEnemyKill = 0;
@@ -67,7 +67,7 @@ namespace Game.GamePlay.Services
                 startPosition.y = _currentIterator;
             }
         }
-        private int IterationCreator( Level level, float screenWidth )
+        private float IterationCreator( Level level, float screenWidth )
         {
             if (level.height < _currentIterator) return 0;
             var valueOfPlatform = Random.Range(0,1f);
@@ -83,7 +83,7 @@ namespace Game.GamePlay.Services
 
             if (chanceOfPlatformIs < 0)
                 return 1;
-            var iterationResultValue = (int)(chanceOfIterator * level.iterationBaseSize);
+            var iterationResultValue = chanceOfIterator * level.iterationBaseSize;
             var platformWidth = (screenWidth*-0.5f) + chanceOfPlatformWidth * screenWidth;
             var platformHeight = ( _delta+_currentIterator+iterationResultValue );
             var platformPosition = new Vector3(platformWidth, platformHeight,0);
