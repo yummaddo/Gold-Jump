@@ -11555,6 +11555,11 @@ PrefabInstance:
       objectReference: {fileID: 551307812}
     - target: {fileID: 8839738411238156449, guid: 2447fe6588441084191f0e9330858c5a,
         type: 3}
+      propertyPath: moveSpeedWidth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839738411238156449, guid: 2447fe6588441084191f0e9330858c5a,
+        type: 3}
       propertyPath: forceValueOnReLife
       value: 200
       objectReference: {fileID: 0}

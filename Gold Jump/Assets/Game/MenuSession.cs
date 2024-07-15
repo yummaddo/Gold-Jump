@@ -31,6 +31,8 @@ namespace Game
         }
 
         private const string LastLoginDateKey = "LastLoginDate";
+        private const string LastLoginDateStatusKey = "LastLoginDateStatusKey";
+
         private void Start()
         {
 #if !UNITY_EDITOR
@@ -38,21 +40,28 @@ namespace Game
 #endif
             CheckDailyLogin();
         }
-        private void CheckDailyLogin()
+        public void CheckDailyLogin()
         {
             string lastLoginDate = PlayerPrefs.GetString(LastLoginDateKey, "");
+            bool lastLoginDateStatus= 1 == PlayerPrefs.GetInt(LastLoginDateStatusKey, 0);
             DateTime currentDate = DateTime.Now.Date;
             DateTime savedDate;
             if (DateTime.TryParse(lastLoginDate, out savedDate))
             {
-                if (savedDate < currentDate || isEditor)
+                if (savedDate < currentDate || !lastLoginDateStatus)
                 {
                     isEditor = false;
                     control.OpenDaily();
+                    PlayerPrefs.SetString(LastLoginDateKey, currentDate.ToString("yyyy-MM-dd"));
+                    PlayerPrefs.SetInt(LastLoginDateStatusKey, 1);
+                    PlayerPrefs.Save();
                 }
             }
-            PlayerPrefs.SetString(LastLoginDateKey, currentDate.ToString("yyyy-MM-dd"));
-            PlayerPrefs.Save();
+            else
+            {
+                PlayerPrefs.SetString(LastLoginDateKey, currentDate.ToString("yyyy-MM-dd"));
+                PlayerPrefs.Save();
+            }
         }
     }
 }
