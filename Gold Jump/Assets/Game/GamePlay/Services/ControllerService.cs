@@ -24,9 +24,9 @@ namespace Game.GamePlay.Services
 #if UNITY_EDITOR
             if (!Active()) return;
             if (Input.GetKeyDown("a"))
-                _horizontalSpeed = -1f;
+                _horizontalSpeed = -1f/3;
             if (Input.GetKeyDown("d"))
-                _horizontalSpeed = 1f;
+                _horizontalSpeed = 1f/3;
             if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
                 _horizontalSpeed = 0f;
 
@@ -35,9 +35,9 @@ namespace Game.GamePlay.Services
 #else
             if (!Active()) return;
             if (Input.GetKeyDown("a"))
-                _horizontalSpeed = -1f;
+                _horizontalSpeed = -1f/3;
             if (Input.GetKeyDown("d"))
-                _horizontalSpeed = 1f;
+                _horizontalSpeed = 1f/3;
             if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
                 _horizontalSpeed = 0f;
 #endif

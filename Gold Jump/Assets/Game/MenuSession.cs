@@ -43,7 +43,7 @@ namespace Game
         public void CheckDailyLogin()
         {
             string lastLoginDate = PlayerPrefs.GetString(LastLoginDateKey, "");
-            bool lastLoginDateStatus= 1 == PlayerPrefs.GetInt(LastLoginDateStatusKey, 0);
+            bool lastLoginDateStatus= 9 == PlayerPrefs.GetInt(LastLoginDateStatusKey, 0);
             DateTime currentDate = DateTime.Now.Date;
             DateTime savedDate;
             if (DateTime.TryParse(lastLoginDate, out savedDate))
@@ -53,7 +53,7 @@ namespace Game
                     isEditor = false;
                     control.OpenDaily();
                     PlayerPrefs.SetString(LastLoginDateKey, currentDate.ToString("yyyy-MM-dd"));
-                    PlayerPrefs.SetInt(LastLoginDateStatusKey, 1);
+                    PlayerPrefs.SetInt(LastLoginDateStatusKey, 9);
                     PlayerPrefs.Save();
                 }
             }

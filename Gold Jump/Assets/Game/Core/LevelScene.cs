@@ -12,7 +12,7 @@ namespace Game.Core
         public SceneReference sceneReference;
         public int id = 0;
         public Sprite backGround;
-        internal string levelPefsName => $"LevelScene{id}";
+        internal string levelPefsName => $"Level_Scene{id}";
         public float timeToStar = 100;
         [Space(10)] [Header("Scene Parameters ")]
         public int maxEnemy = 2;
