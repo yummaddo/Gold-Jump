@@ -8,6 +8,7 @@ namespace Game.GamePlay.Utility
         public RectTransform target;
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (!col.CompareTag("Player")) return;
             var transformCollied = col.transform;
             var pos = transformCollied.position;
             pos.x = target.position.x;
