@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  forceMove: 67
+  forceMove: 60
   animationParticle:
     particle: {fileID: 1477782971762948, guid: 7216ad64edfbc77489ffe4ca54b245fa, type: 3}
     lifeTime: 5

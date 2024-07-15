@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1579056967}
+  colduwnTime: 0.5
 --- !u!1 &179739593
 GameObject:
   m_ObjectHideFlags: 0
@@ -9028,6 +9029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1598411550}
+  colduwnTime: 0.5
 --- !u!1 &1745282192
 GameObject:
   m_ObjectHideFlags: 0
@@ -11556,7 +11558,7 @@ PrefabInstance:
     - target: {fileID: 8839738411238156449, guid: 2447fe6588441084191f0e9330858c5a,
         type: 3}
       propertyPath: moveSpeedWidth
-      value: 100
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8839738411238156449, guid: 2447fe6588441084191f0e9330858c5a,
         type: 3}

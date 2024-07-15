@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  forceMove: 50
+  forceMove: 45
 --- !u!50 &5002795363646677897
 Rigidbody2D:
   serializedVersion: 4

@@ -16,7 +16,7 @@ namespace Game.GamePlay.Panels
         }
         public override void GetForce(Rigidbody2D player)
         {
-            if ( player.velocity.y < GetForceSpeed()/1.3f) player.velocity = Vector2.up * GetForceSpeed();
+            if ( player.velocity.y < GetForceSpeed()/2f) player.velocity = Vector2.up * GetForceSpeed();
 
         }
         public override void ContactWithPlayer(Player player)
